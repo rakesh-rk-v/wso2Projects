@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="Sibling_Data_Proxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <inSequence>
+            <property expression="json-eval($.Name)" name="Name" scope="default" type="STRING"/>
+            <enrich>
+                <source clone="false" property="Name" type="property"/>
+                <target action="child" xpath="json-eval(SamplePayload)"/>
+            </enrich>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </target>
+</proxy>

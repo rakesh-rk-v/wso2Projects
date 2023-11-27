@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/httpStatusAPI" name="Http_Status_API" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST">
+        <inSequence>
+            <log>
+                <property name="Message" value="Welcome File This Indicates API Is Hitted"/>
+            </log>
+            <call>
+                <endpoint key="SiblingsEP"/>
+            </call>
+            <property description="Status" expression="get-property('axis2',&quot;HTTP_SC&quot;)" name="Status" scope="default" type="STRING"/>
+            <property description="Response" expression="json-eval($)" name="response" scope="default" type="STRING"/>
+            <payloadFactory media-type="json">
+                <format>{&#xd;
+"Status" : "$1"&#xd;
+}</format>
+                <args>
+                    <arg evaluator="json" expression="get-property('Status')"/>
+                </args>
+            </payloadFactory>
+            <call>
+                <endpoint key="DataBaseAPI"/>
+            </call>
+            <payloadFactory media-type="json">
+                <format>{&#xd;
+"url" : {&#xd;
+"Our-Response" :"$1"&#xd;
+}&#xd;
+}</format>
+                <args>
+                    <arg evaluator="json" expression="get-property('response')"/>
+                </args>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+    <item>
+        <file>WS_REGISTRY_RES.xml</file>
+        <path>/_system/config/WS_path_reg_res</path>
+        <mediaType>application/wspolicy+xml</mediaType>
+    </item>
+</resources>

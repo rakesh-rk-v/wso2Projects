@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/filterMediatorDoc_API" name="FilterMediatorDoc_API" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST">
+        <inSequence>
+            <filter xpath="//Category='Platinum' and //CustomerId='12345'">
+                <then>
+                    <property name="Discount" scope="default" type="STRING" value="You Are Eligible For Discounts."/>
+                </then>
+                <else>
+                    <property name="Discount" scope="default" type="STRING" value="You Are Not Eligible For Discounts."/>
+                </else>
+            </filter>
+            <payloadFactory media-type="xml">
+                <format>
+                    <Eligibility xmlns="">
+                        <Status>Your Status.........</Status>
+                        <Description>$1</Description>
+                    </Eligibility>
+                </format>
+                <args>
+                    <arg evaluator="xml" expression="get-property('Discount')"/>
+                </args>
+            </payloadFactory>
+            <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

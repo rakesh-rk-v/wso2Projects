@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<localEntry key="MyLocalFileConnection" xmlns="http://ws.apache.org/ns/synapse">
+    <file.init>
+        <workingDir>E:\META-INF\Then\output.csv</workingDir>
+        <name>MyLocalFileConnection</name>
+        <fileLockScheme>Local</fileLockScheme>
+        <connectionType>LOCAL</connectionType>
+    </file.init>
+</localEntry>

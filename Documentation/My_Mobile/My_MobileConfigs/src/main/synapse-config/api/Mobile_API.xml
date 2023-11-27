@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/moble_API" name="Mobile_API" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" uri-template="/{service}/{operator}">
+        <inSequence>
+            <log description="Entry">
+                <property name="Entry" value="Entered To The Service Provided API"/>
+            </log>
+            <property description="Name" expression="json-eval($.Name)" name="Name" scope="default" type="STRING"/>
+            <property description="Service" expression="get-property('uri.var.service')" name="Service" scope="default" type="STRING"/>
+            <property description="Opt" expression="get-property('uri.var.operator')" name="Opt" scope="default" type="STRING"/>
+            <property description="Plan" expression="json-eval($.Plan)" name="Plan" scope="default" type="STRING"/>
+            <switch source="get-property('Service')">
+                <case regex="GSM">
+                    <log description="GSM">
+                        <property name="Message" value="You Are Routed To GSM"/>
+                    </log>
+                </case>
+                <case regex="Land_Line">
+                    <log description="Land_Line">
+                        <property name="Message" value="You Are Routed To Land_Line"/>
+                    </log>
+                </case>
+                <default>
+                    <log description="Default">
+                        <property name="Default" value="Sorry You are Routed to Default"/>
+                    </log>
+                </default>
+            </switch>
+            <switch source="get-property('Plan')">
+                <case regex="Prepaid">
+                    <log description="Pre">
+                        <property name="Bill" value="Bill Is For Prepaid"/>
+                    </log>
+                    <property description="Bill" name="Bill" scope="default" type="STRING" value="200"/>
+                </case>
+                <case regex="PostPaid">
+                    <log description="Post">
+                        <property name="Bill" value="Bill For Post Paid"/>
+                    </log>
+                    <property description="Bill" name="Bill" scope="default" type="STRING" value="500"/>
+                </case>
+                <default>
+                    <log description="Default">
+                        <property name="Bill Default" value="Bill is Generated Fault"/>
+                    </log>
+                    <property name="Bill" scope="default" type="STRING" value="Please Choose the Right Plan Your bill is not Generated"/>
+                </default>
+            </switch>
+            <payloadFactory media-type="json">
+                <format>{&#xd;
+"Name" : "$1",&#xd;
+"Operator" : "$2",&#xd;
+
+"Service" : "$3",
+&#xd;
+"Plan" :"$4",&#xd;
+"Total__Bill" : "$5"&#xd;
+
+}</format>
+                <args>
+                    <arg evaluator="xml" expression="get-property('Name')"/>
+                    <arg evaluator="xml" expression="get-property('Opt')"/>
+                    <arg evaluator="xml" expression="get-property('Service')"/>
+                    <arg evaluator="xml" expression="get-property('Plan')"/>
+                    <arg evaluator="xml" expression="get-property('Bill')"/>
+                </args>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

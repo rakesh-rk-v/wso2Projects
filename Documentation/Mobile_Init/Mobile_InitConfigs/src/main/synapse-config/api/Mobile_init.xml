@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/mobile/intit" name="Mobile_init" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" uri-template="/{service}/{operator}">
+        <inSequence>
+            <log>
+                <property name="First" value="First_Call"/>
+            </log>
+            <call>
+                <endpoint key="Mobile_Ep"/>
+            </call>
+            <log>
+                <property name="Call" value="URL Template Called "/>
+            </log>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

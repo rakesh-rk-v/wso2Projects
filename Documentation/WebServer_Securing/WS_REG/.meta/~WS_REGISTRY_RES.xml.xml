@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><resource name="WS_REGISTRY_RES.xml" isCollection="false" path="/_system/config/WS_path_reg_res/WS_REG/WS_REGISTRY_RES.xml" registryUrl="https://localhost:9443/registry" status="added">
+    <mediaType>application/wspolicy+xml</mediaType>
+</resource>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/testAPI_FileConnector" name="TestAPI_File_Connector" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST">
+        <inSequence>
+            <log>
+                <property name="Welcome" value="Login Message IS Displayed"/>
+            </log>
+            <enrich description="save payload">
+                <source clone="true" type="body"/>
+                <target property="CONTENT" type="property"/>
+            </enrich>
+            <file.checkExist configKey="MyLocalFileConnection">
+                <path>E:\META-INF\output.csv</path>
+                <includeResultTo>Message Body</includeResultTo>
+            </file.checkExist>
+            <filter regex="true" source="//checkExistResult/fileExist/text()">
+                <then/>
+                <else>
+                    <log>
+                        <property name="Bye " value="This Is Then Block"/>
+                    </log>
+                    <file.write configKey="MyLocalFileConnection">
+                        <filePath>E:\META-INF\Then\output.csv</filePath>
+                        <contentOrExpression>Name,Age,Company</contentOrExpression>
+                        <mimeType>Automatic</mimeType>
+                        <compress>false</compress>
+                        <writeMode>Create New</writeMode>
+                        <enableStreaming>false</enableStreaming>
+                        <appendNewLine>true</appendNewLine>
+                        <enableLock>false</enableLock>
+                        <includeResultTo>Message Body</includeResultTo>
+                        <updateLastModified>false</updateLastModified>
+                    </file.write>
+                </else>
+            </filter>
+            <enrich description="put back saved payload">
+                <source clone="true" property="CONTENT" type="property"/>
+                <target type="body"/>
+            </enrich>
+            <file.write configKey="MyLocalFileConnection">
+                <filePath>E:\META-INF\Then\output.csv</filePath>
+                <mimeType>Automatic</mimeType>
+                <compress>false</compress>
+                <writeMode>Append</writeMode>
+                <appendPosition>2</appendPosition>
+                <enableStreaming>false</enableStreaming>
+                <appendNewLine>true</appendNewLine>
+                <enableLock>false</enableLock>
+                <includeResultTo>Message Body</includeResultTo>
+                <updateLastModified>false</updateLastModified>
+            </file.write>
+            <file.read configKey="MyLocalFileConnection">
+                <path>E:\META-INF\Then\output.csv</path>
+                <readMode>Starting From Line</readMode>
+                <startLineNum>2</startLineNum>
+                <endLineNum>20</endLineNum>
+                <lineNum>2</lineNum>
+                <includeResultTo>Message Body</includeResultTo>
+                <enableStreaming>false</enableStreaming>
+                <enableLock>false</enableLock>
+            </file.read>
+            <datamapper config="gov:datamapper/FileConnector.dmc" inputSchema="gov:datamapper/FileConnector_inputSchema.json" inputType="XML" outputSchema="gov:datamapper/FileConnector_outputSchema.json" outputType="CSV" xsltStyleSheet="gov:datamapper/FileConnector_xsltStyleSheet.xml"/>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="FileSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <log description="r">
+        <property expression="$ctx:ERROR_CODE" name="ERROR_CODE"/>
+        <property expression="$ctx:ERROR_MESSAGE" name="ERROR_MESSAGE"/>
+    </log>
+    <respond/>
+</sequence>

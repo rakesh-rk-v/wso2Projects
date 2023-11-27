@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/forEachMediator" name="ForEach_API" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST">
+        <inSequence>
+            <foreach expression="//Customers/Customer">
+                <sequence>
+                    <payloadFactory media-type="xml">
+                        <format>
+                            <Customer xmlns="">
+                                <FullName>$1</FullName>
+                            </Customer>
+                        </format>
+                        <args>
+                            <arg evaluator="xml" expression="fn:concat(//Customer/FirstName,' ',//Customer/LastName)"/>
+                        </args>
+                    </payloadFactory>
+                </sequence>
+            </foreach>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>
