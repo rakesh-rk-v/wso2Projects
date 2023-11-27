@@ -1,0 +1,42 @@
+S.NO,Modulo,Question ,Option,Answer
+1,Spring,Which are the modules of Web layer?,"a)WebSocket, Servlet, Web, Portlet
+b) WebSocket, Servlet, Web-MVC, Web
+c) HTML, JSP, WEB, Portlet
+d)HTML, Servlet, WEB, Portlet","a) WebSocket, Servlet, Web, Portlet"
+2,Spring,How do you turn on annotation wiring?,"a) Add <annotation-context:config /> to bean configuration.
+b) Add <annotation-config /> to bean configuration.
+c) Add <annotation-context-config /> to bean configuration.
+d) Add <context:annotation-config/> to bean configuration.",d)Add <context:annotation-config/> to bean configuration.
+3,Spring,Which interface in spring is responsible for Instantiating and managing the so called Spring beans?,"a)Bean Factory
+b)ApplicationContext
+c)BeanDefenition
+d)BeanFactoryAware",b)b)ApplicationContext
+4,Spring,What is Join point?,"a) This represents a point in your application which joins two objects.
+b) This represents a point in your object where you join values.
+c) This represents a point in your object where you join injected values.
+d) This represents a point in your application where you can plug-in AOP aspect.",d) This represents a point in your application where you can plug-in AOP aspect.
+5,Spring,What are the different points where weaving can be applied?,"
+a)Compile time, load time
+b)Compile time, run time
+c)Run time
+d)Compile time, load Time, Run time","d)Compile time, load Time, Run time"
+6,Spring,How to use ref keyword in beans.,"a)Using setter method only.
+b) Using constructor argument only.
+c) Using setter method and constructor argument both.
+d) None of the above.",c) Using setter method and constructor argument both.
+7,Spring,What is the scope of bean in portlet context?,"a) session
+b) global-session
+c) prototype
+d) request",b) global-session
+8,Spring,Which Of The Following Is Part Of Data Access Layer In Spring Framework?,"a)Aspects
+b)Beans
+c)Context
+d)JMS",d)JMS
+9,Spring, Which Class Is Used To Map A Database Row To A Java Object In Spring?,"a)ResultSet
+b)ResultSetMapper
+c)RowMapper
+d)RowSetMapper",c)RowMapper
+10,Spring,Which Of The Following Class Can Be Used To Execute Sql Queries In Spring?,"a)DBHelper
+b)DBTemplate
+c)JDBCHelper
+d)JdbcTemplate",d)JdbcTemplate

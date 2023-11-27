@@ -1,0 +1,79 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ImpleService WSDL service -->
+
+  <service name="Imple" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://serviceImp.SoapwithDb.jyo.com"/>
+      <parameter name="wsdlServiceElement" value="ImpleService"/>
+      <parameter name="schemaQualified" value="http://dao.SoapwithDb.jyo.com,http://serviceImp.SoapwithDb.jyo.com"/>
+      <parameter name="wsdlServicePort" value="Imple"/>
+      <parameter name="className" value="com.jyo.SoapwithDb.serviceImp.ImpleSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Imple"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="method" qname="operNS:method" xmlns:operNS="http://serviceImp.SoapwithDb.jyo.com" returnQName="retNS:methodReturn" xmlns:retNS="http://serviceImp.SoapwithDb.jyo.com" returnType="rtns:DaoClass" xmlns:rtns="http://dao.SoapwithDb.jyo.com" soapAction="" >
+        <parameter qname="pns:dao" xmlns:pns="http://serviceImp.SoapwithDb.jyo.com" type="tns:DaoClass" xmlns:tns="http://dao.SoapwithDb.jyo.com"/>
+      </operation>
+      <operation name="getList" qname="operNS:getList" xmlns:operNS="http://serviceImp.SoapwithDb.jyo.com" returnQName="retNS:getListReturn" xmlns:retNS="http://serviceImp.SoapwithDb.jyo.com" returnType="rtns:ArrayOf_xsd_anyType" xmlns:rtns="http://serviceImp.SoapwithDb.jyo.com" returnItemQName="tns:item" xmlns:tns="http://serviceImp.SoapwithDb.jyo.com" soapAction="" >
+        <parameter qname="pns:dao" xmlns:pns="http://serviceImp.SoapwithDb.jyo.com" type="tns:DaoClass" xmlns:tns="http://dao.SoapwithDb.jyo.com"/>
+      </operation>
+      <parameter name="allowedMethods" value="method getList"/>
+
+      <typeMapping
+        xmlns:ns="http://serviceImp.SoapwithDb.jyo.com"
+        qname="ns:>getList"
+        type="java:com.jyo.SoapwithDb.serviceImp.GetList"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dao.SoapwithDb.jyo.com"
+        qname="ns:DaoClass"
+        type="java:com.jyo.SoapwithDb.dao.DaoClass"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://serviceImp.SoapwithDb.jyo.com"
+        qname="ns:ArrayOf_xsd_anyType"
+        type="java:java.lang.Object[]"
+        innerType="cmp-ns:anyType" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://serviceImp.SoapwithDb.jyo.com"
+        qname="ns:>method"
+        type="java:com.jyo.SoapwithDb.serviceImp.Method"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://serviceImp.SoapwithDb.jyo.com"
+        qname="ns:>methodResponse"
+        type="java:com.jyo.SoapwithDb.serviceImp.MethodResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://serviceImp.SoapwithDb.jyo.com"
+        qname="ns:>getListResponse"
+        type="java:com.jyo.SoapwithDb.serviceImp.GetListResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//src/com/knot/serviceimpl/ServiceImpl.java=UTF-8
+encoding//src/com/knot/serviceimpl/ServiceImplService.java=UTF-8
+encoding//src/com/knot/serviceimpl/ServiceImplServiceLocator.java=UTF-8
+encoding//src/com/knot/serviceimpl/ServiceImplSoapBindingImpl.java=UTF-8
+encoding//src/com/knot/serviceimpl/ServiceImplSoapBindingSkeleton.java=UTF-8
+encoding//src/com/knot/serviceimpl/ServiceImplSoapBindingStub.java=UTF-8
+encoding//src/com/knot/vo/Employee.java=UTF-8
+encoding/<project>=UTF-8

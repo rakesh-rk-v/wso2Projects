@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ImpleService WSDL service -->
+
+  <service name="Imple" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://serviceImp.SoapwithDb.jyo.com"/>
+      <parameter name="wsdlServiceElement" value="ImpleService"/>
+      <parameter name="schemaQualified" value="http://dao.SoapwithDb.jyo.com,http://serviceImp.SoapwithDb.jyo.com"/>
+      <parameter name="wsdlServicePort" value="Imple"/>
+      <parameter name="className" value="com.jyo.SoapwithDb.serviceImp.Imple"/>
+      <parameter name="wsdlPortType" value="Imple"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://serviceImp.SoapwithDb.jyo.com" xmlns:retNS="http://serviceImp.SoapwithDb.jyo.com" xmlns:rtns="http://dao.SoapwithDb.jyo.com" name="method" qname="operNS:method" returnQName="retNS:methodReturn" returnType="rtns:DaoClass" soapAction="">
+        <parameter xmlns:pns="http://serviceImp.SoapwithDb.jyo.com" xmlns:tns="http://dao.SoapwithDb.jyo.com" qname="pns:dao" type="tns:DaoClass"/>
+      </operation>
+      <operation xmlns:operNS="http://serviceImp.SoapwithDb.jyo.com" xmlns:retNS="http://serviceImp.SoapwithDb.jyo.com" xmlns:rtns="http://serviceImp.SoapwithDb.jyo.com" xmlns:tns="http://serviceImp.SoapwithDb.jyo.com" name="getList" qname="operNS:getList" returnQName="retNS:getListReturn" returnType="rtns:ArrayOf_xsd_anyType" returnItemQName="tns:item" soapAction="">
+        <parameter xmlns:tns="http://dao.SoapwithDb.jyo.com" xmlns:pns="http://serviceImp.SoapwithDb.jyo.com" qname="pns:dao" type="tns:DaoClass"/>
+      </operation>
+      <parameter name="allowedMethods" value="method getList"/>
+
+      <typeMapping xmlns:ns="http://serviceImp.SoapwithDb.jyo.com" qname="ns:&gt;getList" type="java:com.jyo.SoapwithDb.serviceImp.GetList" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://dao.SoapwithDb.jyo.com" qname="ns:DaoClass" type="java:com.jyo.SoapwithDb.dao.DaoClass" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://serviceImp.SoapwithDb.jyo.com" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_anyType" type="java:java.lang.Object[]" innerType="cmp-ns:anyType" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://serviceImp.SoapwithDb.jyo.com" qname="ns:&gt;method" type="java:com.jyo.SoapwithDb.serviceImp.Method" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://serviceImp.SoapwithDb.jyo.com" qname="ns:&gt;methodResponse" type="java:com.jyo.SoapwithDb.serviceImp.MethodResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://serviceImp.SoapwithDb.jyo.com" qname="ns:&gt;getListResponse" type="java:com.jyo.SoapwithDb.serviceImp.GetListResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

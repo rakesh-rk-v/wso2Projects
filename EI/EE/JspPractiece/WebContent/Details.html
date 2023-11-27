@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Resume</title>
+</head>
+<body>
+	<form action="GetData.jsp" method="get">
+	 <fieldset>
+        <legend>
+            Personal Details
+        </legend>
+        <table>
+            <tr>
+                <td>Student Name: </td>
+                <td><input type="text" size="20" placeholder="Enter Your Name" name="Name" required></td>
+               
+            </tr>
+            <tr>
+                <td>Age :</td>
+                <td><input type="number" name="Age" placeholder="Enter Your age"  min="15" max="199" required></td>
+            </tr>
+            <tr>
+                <td>Mail-Id :</td>
+                <td><input name ="Mail" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required></td>
+            </tr>
+            <tr>
+                <td>Date Of Birth :</td>
+                <td><input name="dob" type="date" style="resize:handle"  required name="Dob" min="2000-01-01" max="2010-12-31"></td>
+            </tr>
+            <tr>
+                <td>Address : </td>
+                <td><textarea name="addr" cols="20" rows="4"></textarea></td>
+            </tr>
+            <tr>
+                <td>Gender :</td>
+                <td><input type="radio" name="Gen" value="Male"> Male <input type="radio" name="Gen" value="FeMale">Female <input type="radio" name="Gen" value="Custom">Custom</td>
+               
+            </tr>
+            <tr>
+                <td>Skills </td>
+                <td><input type="checkbox" value="Java" name="skills">Java <input type="checkbox" value="Python" name="skills">Python</td>
+            </tr>
+            <tr>
+                <td>Country</td>
+                <td><select name="country">
+               
+                    <option value="INDIA" >INDIA</option>
+                    <option value="USA" >USA</option>
+                    <option value="RUSSIA" >RUSSIA</option>
+                    <option value="LONDON" >LONDON</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Upload Your Resume</td>
+                <td><input name ="file" type="file" value="resume"></td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <input type="submit" value="Submit" style="color:green;height:100% ;width:100% ;">
+                </td>
+            <td align="center">
+                <input type="reset" style="color:red ;height:100% ;width:50% ;" >
+            </td>
+            
+            </tr>
+        </table>
+    </fieldset>
+		</form>
+</body>
+</html>
+
+

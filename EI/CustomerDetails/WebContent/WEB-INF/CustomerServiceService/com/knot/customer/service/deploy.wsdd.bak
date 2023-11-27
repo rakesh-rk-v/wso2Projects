@@ -1,0 +1,57 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from CustomerServiceService WSDL service -->
+
+  <service name="CustomerService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.customer.knot.com"/>
+      <parameter name="wsdlServiceElement" value="CustomerServiceService"/>
+      <parameter name="schemaQualified" value="http://model.customer.knot.com,http://service.customer.knot.com"/>
+      <parameter name="wsdlServicePort" value="CustomerService"/>
+      <parameter name="className" value="com.knot.customer.service.CustomerServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="CustomerService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getCustomerById" qname="operNS:getCustomerById" xmlns:operNS="http://service.customer.knot.com" returnQName="retNS:getCustomerByIdReturn" xmlns:retNS="http://service.customer.knot.com" returnType="rtns:Customer" xmlns:rtns="http://model.customer.knot.com" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://service.customer.knot.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="insertCustomerDetails" qname="operNS:insertCustomerDetails" xmlns:operNS="http://service.customer.knot.com" returnQName="retNS:insertCustomerDetailsReturn" xmlns:retNS="http://service.customer.knot.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:cust" xmlns:pns="http://service.customer.knot.com" type="tns:Customer" xmlns:tns="http://model.customer.knot.com"/>
+      </operation>
+      <operation name="insertCustomerAddress" qname="operNS:insertCustomerAddress" xmlns:operNS="http://service.customer.knot.com" returnQName="retNS:insertCustomerAddressReturn" xmlns:retNS="http://service.customer.knot.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:add" xmlns:pns="http://service.customer.knot.com" type="tns:Address" xmlns:tns="http://model.customer.knot.com"/>
+      </operation>
+      <operation name="getCustomerByIdWithDelay" qname="operNS:getCustomerByIdWithDelay" xmlns:operNS="http://service.customer.knot.com" returnQName="retNS:getCustomerByIdWithDelayReturn" xmlns:retNS="http://service.customer.knot.com" returnType="rtns:Customer" xmlns:rtns="http://model.customer.knot.com" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://service.customer.knot.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getAddressDetailsById" qname="operNS:getAddressDetailsById" xmlns:operNS="http://service.customer.knot.com" returnQName="retNS:getAddressDetailsByIdReturn" xmlns:retNS="http://service.customer.knot.com" returnType="rtns:Address" xmlns:rtns="http://model.customer.knot.com" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://service.customer.knot.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="getCustomerById getAddressDetailsById getCustomerByIdWithDelay insertCustomerAddress insertCustomerDetails"/>
+
+      <typeMapping
+        xmlns:ns="http://model.customer.knot.com"
+        qname="ns:Customer"
+        type="java:com.knot.customer.model.Customer"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://model.customer.knot.com"
+        qname="ns:Address"
+        type="java:com.knot.customer.model.Address"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

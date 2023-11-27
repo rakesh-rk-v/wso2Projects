@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from EmployeeServiceImplService WSDL service -->
+
+  <service name="EmployeeServiceImpl" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://serviceimpl.employee.wso2.com"/>
+      <parameter name="wsdlServiceElement" value="EmployeeServiceImplService"/>
+      <parameter name="schemaQualified" value="http://vivo.employee.wso2.com,http://serviceimpl.employee.wso2.com"/>
+      <parameter name="wsdlServicePort" value="EmployeeServiceImpl"/>
+      <parameter name="className" value="com.wso2.employee.serviceimpl.EmployeeServiceImpl"/>
+      <parameter name="wsdlPortType" value="EmployeeServiceImpl"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://serviceimpl.employee.wso2.com" xmlns:retNS="http://serviceimpl.employee.wso2.com" xmlns:rtns="http://vivo.employee.wso2.com" name="getDetails" qname="operNS:getDetails" returnQName="retNS:getDetailsReturn" returnType="rtns:Employee" soapAction="">
+        <parameter xmlns:pns="http://serviceimpl.employee.wso2.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://serviceimpl.employee.wso2.com" xmlns:retNS="http://serviceimpl.employee.wso2.com" xmlns:rtns="http://vivo.employee.wso2.com" name="insert" qname="operNS:insert" returnQName="retNS:insertReturn" returnType="rtns:Employee" soapAction="">
+        <parameter xmlns:pns="http://serviceimpl.employee.wso2.com" xmlns:tns="http://vivo.employee.wso2.com" qname="pns:emp" type="tns:Employee"/>
+      </operation>
+      <operation xmlns:operNS="http://serviceimpl.employee.wso2.com" xmlns:retNS="http://serviceimpl.employee.wso2.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="delete" qname="operNS:delete" returnQName="retNS:deleteReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://serviceimpl.employee.wso2.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="insert getDetails delete"/>
+
+      <typeMapping xmlns:ns="http://vivo.employee.wso2.com" qname="ns:Employee" type="java:com.wso2.employee.vivo.Employee" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

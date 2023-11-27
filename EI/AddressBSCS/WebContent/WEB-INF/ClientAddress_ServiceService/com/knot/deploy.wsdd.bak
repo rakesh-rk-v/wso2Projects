@@ -1,0 +1,33 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ClientAddress_ServiceService WSDL service -->
+
+  <service name="ClientAddress_Service" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://knot.com"/>
+      <parameter name="wsdlServiceElement" value="ClientAddress_ServiceService"/>
+      <parameter name="schemaQualified" value="http://knot.com"/>
+      <parameter name="wsdlServicePort" value="ClientAddress_Service"/>
+      <parameter name="className" value="com.knot.ClientAddress_ServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="ClientAddress_Service"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getNewAdress" qname="operNS:getNewAdress" xmlns:operNS="http://knot.com" returnQName="retNS:getNewAdressReturn" xmlns:retNS="http://knot.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:Line1" xmlns:pns="http://knot.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:Line2" xmlns:pns="http://knot.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:Street" xmlns:pns="http://knot.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:State" xmlns:pns="http://knot.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:Zip_Code" xmlns:pns="http://knot.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="getNewAdress"/>
+
+  </service>
+</deployment>

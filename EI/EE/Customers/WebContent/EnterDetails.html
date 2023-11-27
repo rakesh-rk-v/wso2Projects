@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Resume</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body >
+	<form action="">
+	<fieldset>
+		<legend style="color: green"> Customer Details </legend>
+		<table>
+			<tr>
+				<td>Customer_Id</td>
+				<td><b>Automatically Generated</b></td>
+
+			</tr>
+			<tr>
+				<td>Customer Name :</td>
+				<td><input type="text" name="Name"
+					placeholder="Enter Your Name" maxlength="30" required></td>
+			</tr>
+			<tr>
+				<td>Customer Address:</td>
+				<td><textarea rows="2" cols="20"
+						placeholder="Please Enter Permanent Adress"></textarea></td>
+			</tr>
+
+			<tr>
+				<td>Customer Location</td>
+				<td><select name="country">
+
+						<option value="INDIA">INDIA</option>
+						<option value="Singapore">Singapore</option>
+						<option value="UAE">UAE</option>
+						
+				</select></td>
+			</tr>
+			<tr>
+				<td>Customer Web-site :</td>
+				<td><input type="text" name="web" placeholder="website link"
+					maxlength="30"></td>
+			</tr>
+			<tr>
+				<td>Customer Mail-Id :</td>
+				<td><input name="Mail" type="email"
+					pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+					placeholder="Enter You Email Id" required></td>
+			</tr>
+			
+			<tr>
+				<td>Created Date :</td>
+				<td><input name="dob" type="date" style="resize: handle"
+					required name="Dob" min="2000-01-01" max="2010-12-31"></td>
+			</tr>
+			<tr>
+				<td>Status :</td>
+				<td><select name="status">
+						<option value="ACTIVE">ACTIVE</option>
+
+						<option value="INACTIVE">INACTIVE</option>
+
+
+				</select></td>
+			</tr>
+			<tr>
+				<td align="center"><input type="submit" value="Submit"
+					style="color: green; height: 100%; width: 100%;"></td>
+				<td align="center"><input type="reset"
+					style="color: red; height: 100%; width: 50%;"></td>
+
+			</tr>
+
+
+		</table>
+	</fieldset>
+	</form>
+</body>
+</html>
+
+

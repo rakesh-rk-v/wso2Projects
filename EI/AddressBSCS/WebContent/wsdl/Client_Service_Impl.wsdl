@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://serviceImpl.knot.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://serviceImpl.knot.com" xmlns:intf="http://serviceImpl.knot.com" xmlns:tns1="http://model.knot.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://serviceImpl.knot.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://model.knot.com"/>
+   <element name="getAllCustomerAddresses">
+    <complexType/>
+   </element>
+   <element name="getAllCustomerAddressesResponse">
+    <complexType>
+     <sequence>
+      <element name="getAllCustomerAddressesReturn" type="impl:ArrayOf_xsd_anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_anyType">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+   <element name="insert_Client_Address">
+    <complexType>
+     <sequence>
+      <element name="add" type="tns1:Address"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="insert_Client_AddressResponse">
+    <complexType>
+     <sequence>
+      <element name="insert_Client_AddressReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAddressWithDelay">
+    <complexType/>
+   </element>
+   <element name="getAddressWithDelayResponse">
+    <complexType>
+     <sequence>
+      <element name="getAddressWithDelayReturn" type="tns1:Address"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://model.knot.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://serviceImpl.knot.com"/>
+   <complexType name="Address">
+    <sequence>
+     <element name="address_Id" nillable="true" type="xsd:string"/>
+     <element name="city" nillable="true" type="xsd:string"/>
+     <element name="line1" nillable="true" type="xsd:string"/>
+     <element name="line2" nillable="true" type="xsd:string"/>
+     <element name="state" nillable="true" type="xsd:string"/>
+     <element name="street" nillable="true" type="xsd:string"/>
+     <element name="zip_Code" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getAddressWithDelayRequest">
+
+      <wsdl:part element="impl:getAddressWithDelay" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAddressWithDelayResponse">
+
+      <wsdl:part element="impl:getAddressWithDelayResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="insert_Client_AddressRequest">
+
+      <wsdl:part element="impl:insert_Client_Address" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllCustomerAddressesRequest">
+
+      <wsdl:part element="impl:getAllCustomerAddresses" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllCustomerAddressesResponse">
+
+      <wsdl:part element="impl:getAllCustomerAddressesResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="insert_Client_AddressResponse">
+
+      <wsdl:part element="impl:insert_Client_AddressResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Client_Service_Impl">
+
+      <wsdl:operation name="getAllCustomerAddresses">
+
+         <wsdl:input message="impl:getAllCustomerAddressesRequest" name="getAllCustomerAddressesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAllCustomerAddressesResponse" name="getAllCustomerAddressesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="insert_Client_Address">
+
+         <wsdl:input message="impl:insert_Client_AddressRequest" name="insert_Client_AddressRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:insert_Client_AddressResponse" name="insert_Client_AddressResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAddressWithDelay">
+
+         <wsdl:input message="impl:getAddressWithDelayRequest" name="getAddressWithDelayRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAddressWithDelayResponse" name="getAddressWithDelayResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="Client_Service_ImplSoapBinding" type="impl:Client_Service_Impl">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getAllCustomerAddresses">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllCustomerAddressesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllCustomerAddressesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="insert_Client_Address">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="insert_Client_AddressRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="insert_Client_AddressResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAddressWithDelay">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAddressWithDelayRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAddressWithDelayResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="Client_Service_ImplService">
+
+      <wsdl:port binding="impl:Client_Service_ImplSoapBinding" name="Client_Service_Impl">
+
+         <wsdlsoap:address location="http://localhost:8080/AddressBSCS/services/Client_Service_Impl"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

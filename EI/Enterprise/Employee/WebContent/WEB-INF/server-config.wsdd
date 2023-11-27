@@ -1,0 +1,102 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="E:\Enterprise\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Employee\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:service name="EmployeeServiceImpl" provider="java:RPC" style="wrapped" use="literal">
+  <ns3:operation name="getDetails" qname="ns1:getDetails" returnQName="ns1:getDetailsReturn" returnType="ns2:Employee" soapAction="" xmlns:ns1="http://serviceimpl.employee.wso2.com" xmlns:ns2="http://vivo.employee.wso2.com" xmlns:ns3="http://xml.apache.org/axis/wsdd/">
+   <ns3:parameter qname="ns1:id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns3:operation>
+  <ns1:operation name="insert" qname="ns3:insert" returnQName="ns3:insertReturn" returnType="ns4:Employee" soapAction="" xmlns:ns3="http://serviceimpl.employee.wso2.com" xmlns:ns4="http://vivo.employee.wso2.com">
+   <ns1:parameter qname="ns3:emp" type="ns4:Employee"/>
+  </ns1:operation>
+  <ns1:operation name="delete" qname="ns5:delete" returnQName="ns5:deleteReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://serviceimpl.employee.wso2.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:id" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="insert getDetails delete"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="EmployeeServiceImpl"/>
+  <ns1:parameter name="className" value="com.wso2.employee.serviceimpl.EmployeeServiceImpl"/>
+  <ns1:parameter name="wsdlServicePort" value="EmployeeServiceImpl"/>
+  <ns1:parameter name="schemaQualified" value="http://vivo.employee.wso2.com,http://serviceimpl.employee.wso2.com"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://serviceimpl.employee.wso2.com"/>
+  <ns1:parameter name="wsdlServiceElement" value="EmployeeServiceImplService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns6:Employee" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.wso2.employee.vivo.Employee" xmlns:ns6="http://vivo.employee.wso2.com"/>
+ </ns1:service>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Employee" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="setId" qname="ns7:setId" soapAction="" xmlns:ns7="http://vivo.employee.wso2.com">
+   <ns1:parameter qname="ns7:id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="setAddress" qname="ns8:setAddress" soapAction="" xmlns:ns8="http://vivo.employee.wso2.com">
+   <ns1:parameter qname="ns8:address" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="getMobile" qname="ns9:getMobile" returnQName="ns9:getMobileReturn" returnType="xsd:string" soapAction="" xmlns:ns9="http://vivo.employee.wso2.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="setMobile" qname="ns10:setMobile" soapAction="" xmlns:ns10="http://vivo.employee.wso2.com">
+   <ns1:parameter qname="ns10:mobile" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="setDept" qname="ns11:setDept" soapAction="" xmlns:ns11="http://vivo.employee.wso2.com">
+   <ns1:parameter qname="ns11:dept" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="getDept" qname="ns12:getDept" returnQName="ns12:getDeptReturn" returnType="xsd:string" soapAction="" xmlns:ns12="http://vivo.employee.wso2.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="getName" qname="ns13:getName" returnQName="ns13:getNameReturn" returnType="xsd:string" soapAction="" xmlns:ns13="http://vivo.employee.wso2.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="setName" qname="ns14:setName" soapAction="" xmlns:ns14="http://vivo.employee.wso2.com">
+   <ns1:parameter qname="ns14:name" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="getId" qname="ns15:getId" returnQName="ns15:getIdReturn" returnType="xsd:string" soapAction="" xmlns:ns15="http://vivo.employee.wso2.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="getAddress" qname="ns16:getAddress" returnQName="ns16:getAddressReturn" returnType="xsd:string" soapAction="" xmlns:ns16="http://vivo.employee.wso2.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:parameter name="allowedMethods" value="setName setMobile getName setAddress getDept setId getMobile getId getAddress setDept"/>
+  <ns1:parameter name="wsdlPortType" value="Employee"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://vivo.employee.wso2.com"/>
+  <ns1:parameter name="wsdlServicePort" value="Employee"/>
+  <ns1:parameter name="className" value="com.wso2.employee.vivo.Employee"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://vivo.employee.wso2.com"/>
+  <ns1:parameter name="wsdlServiceElement" value="EmployeeService"/>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>

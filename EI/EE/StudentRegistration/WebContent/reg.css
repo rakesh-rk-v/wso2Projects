@@ -1,0 +1,33 @@
+@charset "ISO-8859-1";
+table {
+	border: 2;
+}
+
+th, td {
+	border-style: outset;
+	border-radius: 10px;
+}
+
+.reg {
+	color: hsl(66, 73%, 51%);
+	height: 100%;
+	width: 100%;
+	background-color: rgb(35, 173, 162);
+	text-align: center;
+}
+
+.center {
+	margin-left: auto;
+	margin-right: auto;
+	background-color: rgb(212, 230, 208);
+}
+
+* {
+	color: hsl(348, 83%, 47%);
+	font-weight: normal;
+	font-size: medium;
+	font-family:'Times New Roman', Times, serif;
+	box-sizing: border-box;
+	text-align: center;
+	text-decoration: solid;
+}

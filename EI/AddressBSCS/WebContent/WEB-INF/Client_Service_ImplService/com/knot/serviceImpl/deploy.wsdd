@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from Client_Service_ImplService WSDL service -->
+
+  <service name="Client_Service_Impl" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://serviceImpl.knot.com"/>
+      <parameter name="wsdlServiceElement" value="Client_Service_ImplService"/>
+      <parameter name="schemaQualified" value="http://model.knot.com,http://serviceImpl.knot.com"/>
+      <parameter name="wsdlServicePort" value="Client_Service_Impl"/>
+      <parameter name="className" value="com.knot.serviceImpl.Client_Service_Impl"/>
+      <parameter name="wsdlPortType" value="Client_Service_Impl"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://serviceImpl.knot.com" xmlns:retNS="http://serviceImpl.knot.com" xmlns:rtns="http://serviceImpl.knot.com" xmlns:tns="http://serviceImpl.knot.com" name="getAllCustomerAddresses" qname="operNS:getAllCustomerAddresses" returnQName="retNS:getAllCustomerAddressesReturn" returnType="rtns:ArrayOf_xsd_anyType" returnItemQName="tns:item" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://serviceImpl.knot.com" xmlns:retNS="http://serviceImpl.knot.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="insert_Client_Address" qname="operNS:insert_Client_Address" returnQName="retNS:insert_Client_AddressReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://serviceImpl.knot.com" xmlns:tns="http://model.knot.com" qname="pns:add" type="tns:Address"/>
+      </operation>
+      <operation xmlns:operNS="http://serviceImpl.knot.com" xmlns:retNS="http://serviceImpl.knot.com" xmlns:rtns="http://model.knot.com" name="getAddressWithDelay" qname="operNS:getAddressWithDelay" returnQName="retNS:getAddressWithDelayReturn" returnType="rtns:Address" soapAction="">
+      </operation>
+      <parameter name="allowedMethods" value="insert_Client_Address getAllCustomerAddresses getAddressWithDelay"/>
+
+      <typeMapping xmlns:ns="http://serviceImpl.knot.com" qname="ns:&gt;insert_Client_Address" type="java:com.knot.serviceImpl.Insert_Client_Address" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://serviceImpl.knot.com" qname="ns:&gt;getAddressWithDelayResponse" type="java:com.knot.serviceImpl.GetAddressWithDelayResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.knot.com" qname="ns:Address" type="java:com.knot.model.Address" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://serviceImpl.knot.com" qname="ns:&gt;insert_Client_AddressResponse" type="java:com.knot.serviceImpl.Insert_Client_AddressResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://serviceImpl.knot.com" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_anyType" type="java:java.lang.Object[]" innerType="cmp-ns:anyType" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://serviceImpl.knot.com" qname="ns:&gt;getAllCustomerAddresses" type="java:com.knot.serviceImpl.GetAllCustomerAddresses" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://serviceImpl.knot.com" qname="ns:&gt;getAddressWithDelay" type="java:com.knot.serviceImpl.GetAddressWithDelay" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://serviceImpl.knot.com" qname="ns:&gt;getAllCustomerAddressesResponse" type="java:com.knot.serviceImpl.GetAllCustomerAddressesResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

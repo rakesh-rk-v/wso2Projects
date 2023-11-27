@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.bscs.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.bscs.com" xmlns:intf="http://service.bscs.com" xmlns:tns1="http://model.bscs.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.bscs.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://model.bscs.com"/>
+   <element name="getDataFromDB">
+    <complexType/>
+   </element>
+   <element name="getDataFromDBResponse">
+    <complexType>
+     <sequence>
+      <element name="getDataFromDBReturn" type="tns1:TestDataModel"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://model.bscs.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="TestDataModel">
+    <sequence>
+     <element name="city" nillable="true" type="xsd:string"/>
+     <element name="supplier_ID" nillable="true" type="xsd:string"/>
+     <element name="supplier_Name" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getDataFromDBResponse">
+
+      <wsdl:part element="impl:getDataFromDBResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDataFromDBRequest">
+
+      <wsdl:part element="impl:getDataFromDB" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="BSCS_Service">
+
+      <wsdl:operation name="getDataFromDB">
+
+         <wsdl:input message="impl:getDataFromDBRequest" name="getDataFromDBRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getDataFromDBResponse" name="getDataFromDBResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="BSCS_ServiceSoapBinding" type="impl:BSCS_Service">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getDataFromDB">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDataFromDBRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDataFromDBResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="BSCS_ServiceService">
+
+      <wsdl:port binding="impl:BSCS_ServiceSoapBinding" name="BSCS_Service">
+
+         <wsdlsoap:address location="http://localhost:8080/BSCS_SQL/services/BSCS_Service"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,51 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from EmployeeService WSDL service -->
+
+  <service name="Employee" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://vivo.employee.wso2.com"/>
+      <parameter name="wsdlServiceElement" value="EmployeeService"/>
+      <parameter name="schemaQualified" value="http://vivo.employee.wso2.com"/>
+      <parameter name="wsdlServicePort" value="Employee"/>
+      <parameter name="className" value="com.wso2.employee.vivo.EmployeeSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Employee"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="setId" qname="operNS:setId" xmlns:operNS="http://vivo.employee.wso2.com" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://vivo.employee.wso2.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="setAddress" qname="operNS:setAddress" xmlns:operNS="http://vivo.employee.wso2.com" soapAction="" >
+        <parameter qname="pns:address" xmlns:pns="http://vivo.employee.wso2.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getMobile" qname="operNS:getMobile" xmlns:operNS="http://vivo.employee.wso2.com" returnQName="retNS:getMobileReturn" xmlns:retNS="http://vivo.employee.wso2.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="setMobile" qname="operNS:setMobile" xmlns:operNS="http://vivo.employee.wso2.com" soapAction="" >
+        <parameter qname="pns:mobile" xmlns:pns="http://vivo.employee.wso2.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="setDept" qname="operNS:setDept" xmlns:operNS="http://vivo.employee.wso2.com" soapAction="" >
+        <parameter qname="pns:dept" xmlns:pns="http://vivo.employee.wso2.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getDept" qname="operNS:getDept" xmlns:operNS="http://vivo.employee.wso2.com" returnQName="retNS:getDeptReturn" xmlns:retNS="http://vivo.employee.wso2.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="getName" qname="operNS:getName" xmlns:operNS="http://vivo.employee.wso2.com" returnQName="retNS:getNameReturn" xmlns:retNS="http://vivo.employee.wso2.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="setName" qname="operNS:setName" xmlns:operNS="http://vivo.employee.wso2.com" soapAction="" >
+        <parameter qname="pns:name" xmlns:pns="http://vivo.employee.wso2.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getId" qname="operNS:getId" xmlns:operNS="http://vivo.employee.wso2.com" returnQName="retNS:getIdReturn" xmlns:retNS="http://vivo.employee.wso2.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="getAddress" qname="operNS:getAddress" xmlns:operNS="http://vivo.employee.wso2.com" returnQName="retNS:getAddressReturn" xmlns:retNS="http://vivo.employee.wso2.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="setName setMobile getName setAddress getDept setId getMobile getId getAddress setDept"/>
+
+  </service>
+</deployment>

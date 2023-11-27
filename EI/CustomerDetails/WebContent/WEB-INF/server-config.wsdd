@@ -1,0 +1,97 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="E:\EI\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\CustomerDetails\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:service name="CustomerService" provider="java:RPC" style="wrapped" use="literal">
+  <ns3:operation name="getCustomerById" qname="ns1:getCustomerById" returnQName="ns1:getCustomerByIdReturn" returnType="ns2:Customer" soapAction="" xmlns:ns1="http://service.customer.knot.com" xmlns:ns2="http://model.customer.knot.com" xmlns:ns3="http://xml.apache.org/axis/wsdd/">
+   <ns3:parameter qname="ns1:id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns3:operation>
+  <ns1:operation name="insertCustomerDetails" qname="ns3:insertCustomerDetails" returnQName="ns3:insertCustomerDetailsReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://service.customer.knot.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:cust" type="ns4:Customer" xmlns:ns4="http://model.customer.knot.com"/>
+  </ns1:operation>
+  <ns1:operation name="insertCustomerAddress" qname="ns5:insertCustomerAddress" returnQName="ns5:insertCustomerAddressReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://service.customer.knot.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:add" type="ns6:Address" xmlns:ns6="http://model.customer.knot.com"/>
+  </ns1:operation>
+  <ns1:operation name="getCustomerByIdWithDelay" qname="ns7:getCustomerByIdWithDelay" returnQName="ns7:getCustomerByIdWithDelayReturn" returnType="ns8:Customer" soapAction="" xmlns:ns7="http://service.customer.knot.com" xmlns:ns8="http://model.customer.knot.com">
+   <ns1:parameter qname="ns7:id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="getAddressDetailsById" qname="ns9:getAddressDetailsById" returnQName="ns9:getAddressDetailsByIdReturn" returnType="ns10:Address" soapAction="" xmlns:ns10="http://model.customer.knot.com" xmlns:ns9="http://service.customer.knot.com">
+   <ns1:parameter qname="ns9:id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="getCustomerById getAddressDetailsById getCustomerByIdWithDelay insertCustomerAddress insertCustomerDetails"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="CustomerService"/>
+  <ns1:parameter name="className" value="com.knot.customer.service.CustomerService"/>
+  <ns1:parameter name="wsdlServicePort" value="CustomerService"/>
+  <ns1:parameter name="schemaQualified" value="http://model.customer.knot.com,http://service.customer.knot.com"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service.customer.knot.com"/>
+  <ns1:parameter name="wsdlServiceElement" value="CustomerServiceService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns11:Customer" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.knot.customer.model.Customer" xmlns:ns11="http://model.customer.knot.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns12:Address" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.knot.customer.model.Address" xmlns:ns12="http://model.customer.knot.com"/>
+ </ns1:service>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Customer_Service_Impl" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="insertCustomerDetails" qname="ns13:insertCustomerDetails" returnQName="ns13:insertCustomerDetailsReturn" returnType="xsd:string" soapAction="" xmlns:ns13="http://service.customer.knot.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns13:cust" type="ns14:Customer" xmlns:ns14="http://model.customer.knot.com"/>
+  </ns1:operation>
+  <ns1:operation name="getCustomerId" qname="ns15:getCustomerId" returnQName="ns15:getCustomerIdReturn" returnType="xsd:string" soapAction="" xmlns:ns15="http://service.customer.knot.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="getCustomerById" qname="ns16:getCustomerById" returnQName="ns16:getCustomerByIdReturn" returnType="ns17:Customer" soapAction="" xmlns:ns16="http://service.customer.knot.com" xmlns:ns17="http://model.customer.knot.com">
+   <ns1:parameter qname="ns16:id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="getCustomerById insertCustomerDetails getCustomerId"/>
+  <ns1:parameter name="wsdlPortType" value="Customer_Service_Impl"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://model.customer.knot.com,http://service.customer.knot.com"/>
+  <ns1:parameter name="wsdlServicePort" value="Customer_Service_Impl"/>
+  <ns1:parameter name="className" value="com.knot.customer.service.Customer_Service_Impl"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service.customer.knot.com"/>
+  <ns1:parameter name="wsdlServiceElement" value="Customer_Service_ImplService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns18:Customer" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.knot.customer.model.Customer" xmlns:ns18="http://model.customer.knot.com"/>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>

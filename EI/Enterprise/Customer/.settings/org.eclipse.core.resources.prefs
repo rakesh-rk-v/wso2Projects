@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//src/com/wso2/employee/serviceimpl/EmployeeServiceImpl.java=UTF-8
+encoding//src/com/wso2/employee/serviceimpl/EmployeeServiceImplService.java=UTF-8
+encoding//src/com/wso2/employee/serviceimpl/EmployeeServiceImplServiceLocator.java=UTF-8
+encoding//src/com/wso2/employee/serviceimpl/EmployeeServiceImplSoapBindingImpl.java=UTF-8
+encoding//src/com/wso2/employee/serviceimpl/EmployeeServiceImplSoapBindingSkeleton.java=UTF-8
+encoding//src/com/wso2/employee/serviceimpl/EmployeeServiceImplSoapBindingStub.java=UTF-8
+encoding//src/com/wso2/employee/vivo/Employee.java=UTF-8
+encoding/<project>=UTF-8

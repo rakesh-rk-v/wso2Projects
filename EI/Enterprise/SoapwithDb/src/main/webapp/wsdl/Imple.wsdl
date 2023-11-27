@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://serviceImp.SoapwithDb.jyo.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://serviceImp.SoapwithDb.jyo.com" xmlns:intf="http://serviceImp.SoapwithDb.jyo.com" xmlns:tns1="http://dao.SoapwithDb.jyo.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://serviceImp.SoapwithDb.jyo.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://dao.SoapwithDb.jyo.com"/>
+   <element name="method">
+    <complexType>
+     <sequence>
+      <element name="dao" type="tns1:DaoClass"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="methodResponse">
+    <complexType>
+     <sequence>
+      <element name="methodReturn" type="tns1:DaoClass"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getList">
+    <complexType>
+     <sequence>
+      <element name="dao" type="tns1:DaoClass"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getListResponse">
+    <complexType>
+     <sequence>
+      <element name="getListReturn" type="impl:ArrayOf_xsd_anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_anyType">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://dao.SoapwithDb.jyo.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://serviceImp.SoapwithDb.jyo.com"/>
+   <complexType name="DaoClass">
+    <sequence>
+     <element name="adress" nillable="true" type="xsd:string"/>
+     <element name="id" nillable="true" type="xsd:string"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+     <element name="pno" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="methodRequest">
+
+      <wsdl:part element="impl:method" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="methodResponse">
+
+      <wsdl:part element="impl:methodResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getListResponse">
+
+      <wsdl:part element="impl:getListResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getListRequest">
+
+      <wsdl:part element="impl:getList" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Imple">
+
+      <wsdl:operation name="method">
+
+         <wsdl:input message="impl:methodRequest" name="methodRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:methodResponse" name="methodResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getList">
+
+         <wsdl:input message="impl:getListRequest" name="getListRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getListResponse" name="getListResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ImpleSoapBinding" type="impl:Imple">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="method">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="methodRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="methodResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getList">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getListRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getListResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ImpleService">
+
+      <wsdl:port binding="impl:ImpleSoapBinding" name="Imple">
+
+         <wsdlsoap:address location="http://localhost:8080/SoapwithDb/services/Imple"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://serviceimpl.employee.wso2.com" xmlns:intf="http://serviceimpl.employee.wso2.com" xmlns:tns1="http://vivo.employee.wso2.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://serviceimpl.employee.wso2.com">
+  
+  <!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+   
+  <wsdl:types>
+      
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://serviceimpl.employee.wso2.com">
+         
+      <import namespace="http://vivo.employee.wso2.com"/>
+         
+      <element name="getDetails">
+            
+        <complexType>
+               
+          <sequence>
+                  
+            <element name="id" type="xsd:string"/>
+                 
+          </sequence>
+              
+        </complexType>
+           
+      </element>
+         
+      <element name="getDetailsResponse">
+            
+        <complexType>
+               
+          <sequence>
+                  
+            <element name="getDetailsReturn" type="tns1:Employee"/>
+                 
+          </sequence>
+              
+        </complexType>
+           
+      </element>
+         
+      <element name="insert">
+            
+        <complexType>
+               
+          <sequence>
+                  
+            <element name="emp" type="tns1:Employee"/>
+                 
+          </sequence>
+              
+        </complexType>
+           
+      </element>
+         
+      <element name="insertResponse">
+            
+        <complexType>
+               
+          <sequence>
+                  
+            <element name="insertReturn" type="tns1:Employee"/>
+                 
+          </sequence>
+              
+        </complexType>
+           
+      </element>
+         
+      <element name="delete">
+            
+        <complexType>
+               
+          <sequence>
+                  
+            <element name="id" type="xsd:string"/>
+                 
+          </sequence>
+              
+        </complexType>
+           
+      </element>
+         
+      <element name="deleteResponse">
+            
+        <complexType>
+               
+          <sequence>
+                  
+            <element name="deleteReturn" type="xsd:string"/>
+                 
+          </sequence>
+              
+        </complexType>
+           
+      </element>
+        
+    </schema>
+      
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://vivo.employee.wso2.com">
+         
+      <complexType name="Employee">
+            
+        <sequence>
+               
+          <element name="address" nillable="true" type="xsd:string"/>
+               
+          <element name="dept" nillable="true" type="xsd:string"/>
+               
+          <element name="id" nillable="true" type="xsd:string"/>
+               
+          <element name="mobile" nillable="true" type="xsd:string"/>
+               
+          <element name="name" nillable="true" type="xsd:string"/>
+              
+        </sequence>
+           
+      </complexType>
+        
+    </schema>
+     
+  </wsdl:types>
+     
+  <wsdl:message name="insertResponse">
+          
+    <wsdl:part element="impl:insertResponse" name="parameters">
+
+      </wsdl:part>
+       
+  </wsdl:message>
+     
+  <wsdl:message name="deleteRequest">
+          
+    <wsdl:part element="impl:delete" name="parameters">
+
+      </wsdl:part>
+       
+  </wsdl:message>
+     
+  <wsdl:message name="getDetailsRequest">
+          
+    <wsdl:part element="impl:getDetails" name="parameters">
+
+      </wsdl:part>
+       
+  </wsdl:message>
+     
+  <wsdl:message name="insertRequest">
+          
+    <wsdl:part element="impl:insert" name="parameters">
+
+      </wsdl:part>
+       
+  </wsdl:message>
+     
+  <wsdl:message name="deleteResponse">
+          
+    <wsdl:part element="impl:deleteResponse" name="parameters">
+
+      </wsdl:part>
+       
+  </wsdl:message>
+     
+  <wsdl:message name="getDetailsResponse">
+          
+    <wsdl:part element="impl:getDetailsResponse" name="parameters">
+
+      </wsdl:part>
+       
+  </wsdl:message>
+     
+  <wsdl:portType name="EmployeeServiceImpl">
+          
+    <wsdl:operation name="getDetails">
+               
+      <wsdl:input message="impl:getDetailsRequest" name="getDetailsRequest">
+
+       </wsdl:input>
+               
+      <wsdl:output message="impl:getDetailsResponse" name="getDetailsResponse">
+
+       </wsdl:output>
+            
+    </wsdl:operation>
+          
+    <wsdl:operation name="insert">
+               
+      <wsdl:input message="impl:insertRequest" name="insertRequest">
+
+       </wsdl:input>
+               
+      <wsdl:output message="impl:insertResponse" name="insertResponse">
+
+       </wsdl:output>
+            
+    </wsdl:operation>
+          
+    <wsdl:operation name="delete">
+               
+      <wsdl:input message="impl:deleteRequest" name="deleteRequest">
+
+       </wsdl:input>
+               
+      <wsdl:output message="impl:deleteResponse" name="deleteResponse">
+
+       </wsdl:output>
+            
+    </wsdl:operation>
+       
+  </wsdl:portType>
+     
+  <wsdl:binding name="EmployeeServiceImplSoapBinding" type="impl:EmployeeServiceImpl">
+          
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+          
+    <wsdl:operation name="getDetails">
+               
+      <wsdlsoap:operation soapAction="getDetails"/>
+               
+      <wsdl:input name="getDetailsRequest">
+                    
+        <wsdlsoap:body use="literal"/>
+                 
+      </wsdl:input>
+               
+      <wsdl:output name="getDetailsResponse">
+                    
+        <wsdlsoap:body use="literal"/>
+                 
+      </wsdl:output>
+            
+    </wsdl:operation>
+          
+    <wsdl:operation name="insert">
+               
+      <wsdlsoap:operation soapAction="insert"/>
+               
+      <wsdl:input name="insertRequest">
+                    
+        <wsdlsoap:body use="literal"/>
+                 
+      </wsdl:input>
+               
+      <wsdl:output name="insertResponse">
+                    
+        <wsdlsoap:body use="literal"/>
+                 
+      </wsdl:output>
+            
+    </wsdl:operation>
+          
+    <wsdl:operation name="delete">
+               
+      <wsdlsoap:operation soapAction="delete"/>
+               
+      <wsdl:input name="deleteRequest">
+                    
+        <wsdlsoap:body use="literal"/>
+                 
+      </wsdl:input>
+               
+      <wsdl:output name="deleteResponse">
+                    
+        <wsdlsoap:body use="literal"/>
+                 
+      </wsdl:output>
+            
+    </wsdl:operation>
+       
+  </wsdl:binding>
+     
+  <wsdl:service name="EmployeeServiceImplService">
+          
+    <wsdl:port binding="impl:EmployeeServiceImplSoapBinding" name="EmployeeServiceImpl">
+               
+      <wsdlsoap:address location="http://localhost:8080/Customer/services/EmployeeServiceImpl"/>
+            
+    </wsdl:port>
+       
+  </wsdl:service>
+  
+</wsdl:definitions>
